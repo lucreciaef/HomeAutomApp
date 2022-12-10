@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
 
     private var buttonPowerSwitchStatus = ButtonPowerSwitchStatus.POWER_IS_OFF
 
-    private fun getInitialButtonPowerSwitchStatus(onResponseCallback: (isOn:String) -> Unit) {
+    private fun getInitialButtonPowerSwitchStatus() {
         thread(true) {
             try {
                 val requestURL = URL("http://192.168.0.111/relay/0")
@@ -52,7 +52,15 @@ class MainActivity : AppCompatActivity() {
                         val responseJson =
                             gson.fromJson(response.toString(), ShellyPlugJSON::class.java)
                         val initialStatus = responseJson.ison.toString()
-                        onResponseCallback(initialStatus)
+//                        onResponseHandler(initialStatus)
+
+                        buttonPowerSwitchStatus =
+                            if (initialStatus == "false") ButtonPowerSwitchStatus.POWER_IS_OFF
+                            else ButtonPowerSwitchStatus.POWER_IS_ON
+
+                        // Show a snackbar message with the initial power switch status
+                        Snackbar.make(binding.root, "Is the switch ON?: $initialStatus", Snackbar.LENGTH_LONG)
+                            .setAction("Dismiss", null).show()
                     }
                 }
             } catch (e: Exception) {
@@ -69,20 +77,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Retrieve the initial value for buttonPowerSwitchStatus
-        val onResponseCallback = {isOn: String ->
-            // Update the initial value of the buttonPowerSwitchStatus
-            buttonPowerSwitchStatus =
-                if (isOn == "false") ButtonPowerSwitchStatus.POWER_IS_OFF
-                else ButtonPowerSwitchStatus.POWER_IS_ON
-
-            // Show a snackbar message with the initial power switch status
-            Snackbar.make(binding.root, "Is the switch ON?: $isOn", Snackbar.LENGTH_LONG)
-                .setAction("Dismiss", null).show()
-        }
-
         // Call the getInitialButtonPowerSwitchStatus function and pass the callback function as an argument
-        getInitialButtonPowerSwitchStatus(onResponseCallback)
+        getInitialButtonPowerSwitchStatus()
 
         val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
         val viewPager: ViewPager = binding.viewPager
