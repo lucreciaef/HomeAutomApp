@@ -27,7 +27,6 @@ class MainActivity : AppCompatActivity() {
     private var buttonPowerSwitchStatus = ButtonPowerSwitchStatus.POWER_IS_OFF
 
     private fun getInitialButtonPowerSwitchStatus(onResponseCallback: (isOn:String) -> Unit) {
-        var initialStatus = ""
         thread(true) {
             try {
                 val requestURL = URL("http://192.168.0.111/relay/0")
@@ -52,7 +51,7 @@ class MainActivity : AppCompatActivity() {
                         val gson = Gson()
                         val responseJson =
                             gson.fromJson(response.toString(), ShellyPlugJSON::class.java)
-                        initialStatus = responseJson.ison.toString()
+                        val initialStatus = responseJson.ison.toString()
                         onResponseCallback(initialStatus)
                     }
                 }
@@ -104,7 +103,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun togglePowerShellyPlugExtractorFan(status: String) {
-        val thread = Thread {
+        thread(true) {
             try {
                 val requestURL = URL("http://192.168.0.111/relay/0?turn=$status")
                 val httpMethod = "POST"
@@ -133,7 +132,6 @@ class MainActivity : AppCompatActivity() {
                 e.printStackTrace()
             }
         }
-        thread.start()
     }
 }
 
