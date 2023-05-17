@@ -30,18 +30,18 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/buttonPowerSwitch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginEnd="@dimen/fab_margin"
-        android:layout_marginBottom="16dp"
-        android:tint="#FFFFFF"
-        app:backgroundTint="#956AE3"
-        app:backgroundTintMode="add"
-        app:layout_anchor="@+id/view_pager"
-        app:layout_anchorGravity="center"
-        app:rippleColor="#FFFFFF"
-        app:srcCompat="@android:drawable/ic_lock_power_off" />
+<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--        android:id="@+id/buttonPowerSwitch"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:layout_marginEnd="@dimen/fab_margin"-->
+<!--        android:layout_marginBottom="16dp"-->
+<!--        android:tint="#FFFFFF"-->
+<!--        app:backgroundTint="#956AE3"-->
+<!--        app:backgroundTintMode="add"-->
+<!--        app:layout_anchor="@+id/view_pager"-->
+<!--        app:layout_anchorGravity="center"-->
+<!--        app:rippleColor="#FFFFFF"-->
+<!--        app:srcCompat="@android:drawable/ic_lock_power_off" />-->
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -20,4 +20,18 @@
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintTop_creator="1" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/buttonPowerSwitch"
+        android:layout_width="57dp"
+        android:layout_height="57dp"
+        android:tint="#FFFFFF"
+        app:backgroundTint="#956AE3"
+        app:backgroundTintMode="add"
+        app:rippleColor="#FFFFFF"
+        app:srcCompat="@android:drawable/ic_lock_power_off"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="80dp"
+        android:layout_marginStart="40dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
